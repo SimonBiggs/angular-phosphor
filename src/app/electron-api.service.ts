@@ -12,9 +12,9 @@ export class ElectronApiService {
   constructor(private http: Http) { }
 
   // Add new Hero
-  post(hero: Hero): Promise<Hero> {
+  send_stuff(hero: Hero): Promise<Hero> {
     let headers = new Headers({
-      'Content-Type': 'application/json'});
+      'Content-Type': 'application/x-www-form-urlencoded'});
 
     return this.http
                .post(this.apiurl, JSON.stringify(hero), {headers: headers})
