@@ -1,24 +1,29 @@
 import { Component, OnInit } from '@angular/core';
-import { ROUTER_DIRECTIVES } from '@angular/router';
 
-import { ApiService } from './shared';
+import { Hero } from './hero.ts';
+import { HeroService } from './hero.service';
 
 @Component({
-  selector: 'my-app', // <my-app></my-app>
-  providers: [ApiService],
-  directives: [ROUTER_DIRECTIVES],
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
+  selector: 'my-app',
+  styleUrls: ['app.component.css'],
+  templateUrl: 'app.component.html'
 })
 export class AppComponent implements OnInit {
-  url = 'https://github.com/preboot/angular2-webpack';
+  title = 'Tour of Heroes';
+  hero: Hero;
+  selectedHero: Hero;
+  heroes: Hero[];
 
-  constructor(private api: ApiService) { }
+  constructor(private heroService: HeroService) { }
 
-  ngOnInit () {
-    let angularnode = document.getElementById('angular');
-    angularnode.parentNode.removeChild(angularnode);
-    let b1 = document.getElementById('blue');
-    b1.appendChild(angularnode);
+  getHeroes() {
+    this.heroService.getHeroes().then(heroes => this.heroes = heroes);
   }
+
+  onSelect(hero: Hero) { this.selectedHero = hero; }
+
+  ngOnInit() {
+    this.getHeroes();
+  }
+
 }
