@@ -5,6 +5,7 @@ import { HttpModule } from '@angular/http';
 
 import { AppComponent }  from './app.component';
 import { HeroDetailComponent } from './hero-detail.component';
+import { HeroFormComponent } from './hero-form.component';
 
 import { HeroService }  from './hero.service';
 import { ElectronApiService } from './electron-api.service';
@@ -17,13 +18,18 @@ import { ElectronApiService } from './electron-api.service';
   ],
   declarations: [
     AppComponent,
-    HeroDetailComponent
+    HeroDetailComponent,
+    HeroFormComponent
   ],
   providers: [
     ElectronApiService,
     HeroService
   ],
-  bootstrap: [ AppComponent ]
+  bootstrap: [
+    AppComponent,
+    HeroDetailComponent,
+    HeroFormComponent
+  ]
 })
 export class AppModule {
 }

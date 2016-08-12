@@ -22,7 +22,6 @@ let b1 = createContent('Blue');
 let b2 = createContent('Blue');
 
 let g1 = createContent('Green');
-g1.id = 'green';
 let g2 = createContent('Green');
 let g3 = createContent('Green');
 
@@ -53,3 +52,11 @@ window.onresize = () => { panel.update(); };
 let myapp = document.getElementById('my-app');
 myapp.parentNode.removeChild(myapp);
 b1.node.appendChild(myapp);
+
+let myherodetail = document.getElementById('my-hero-detail');
+myherodetail.parentNode.removeChild(myherodetail);
+g1.node.appendChild(myherodetail);
+
+let myheroform = document.getElementById('my-hero-form');
+myheroform.parentNode.removeChild(myheroform);
+y1.node.appendChild(myheroform);
