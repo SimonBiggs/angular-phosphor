@@ -57,13 +57,15 @@
 	    return widget;
 	}
 	var r1 = createContent('Red');
+	r1.id = 'my-hero-detail-container';
 	var r2 = createContent('Red');
 	var r3 = createContent('Red');
 	var b1 = createContent('Blue');
 	b1.id = 'my-app-container';
 	var b2 = createContent('Blue');
-	var g1 = createContent('Green');
-	g1.id = 'my-hero-detail-container';
+	b2.id = 'my-raw-coordinates-container';
+	var g1 = createContent('White');
+	g1.id = 'my-plot-container';
 	var g2 = createContent('Green');
 	var g3 = createContent('Green');
 	var y1 = createContent('Yellow');
@@ -79,7 +81,7 @@
 	panel.insertTabBefore(g3, y2);
 	panel.insertTabBefore(r3, y1);
 	panel.insertLeft(b1);
-	panel.insertTabAfter(r1, b1);
+	panel.insertBottom(r1, b1);
 	panel.insertTabBefore(r2, b1);
 	panel.attach(document.body);
 	window.onresize = function () { panel.update(); };
