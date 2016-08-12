@@ -7,7 +7,7 @@ import { ElectronApiService } from './electron-api.service';
 @Component({
   selector: 'my-app',
   styleUrls: ['app.component.css'],
-  templateUrl: 'app.component.html'
+  templateUrl: 'app.component.html',
 })
 export class AppComponent implements OnInit {
   title = 'Tour of Heroes';
@@ -31,6 +31,11 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.getHeroes();
+
+    let myapp = document.getElementById('my-app');
+    myapp.parentNode.removeChild(myapp);
+    let myappcontainer = document.getElementById('my-app-container');
+    myappcontainer.appendChild(myapp);
   }
 
 }

@@ -26,9 +26,7 @@ import { ElectronApiService } from './electron-api.service';
     HeroService
   ],
   bootstrap: [
-    AppComponent,
-    HeroDetailComponent,
-    HeroFormComponent
+    AppComponent
   ]
 })
 export class AppModule {

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormHero }    from './form-hero';
 @Component({
   selector: 'my-hero-form',
@@ -6,7 +6,7 @@ import { FormHero }    from './form-hero';
   templateUrl: './hero-form.component.html',
 
 })
-export class HeroFormComponent {
+export class HeroFormComponent implements OnInit {
   powers = ['Really Smart', 'Super Flexible',
             'Super Hot', 'Weather Changer'];
   model = new FormHero(18, 'Dr IQ', this.powers[0], 'Chuck Overstreet');
@@ -21,5 +21,12 @@ export class HeroFormComponent {
     this.model = new FormHero(42, '', '');
     this.active = false;
     setTimeout(() => this.active = true, 0);
+  }
+
+  ngOnInit() {
+    let myheroform = document.getElementById('my-hero-form');
+    myheroform.parentNode.removeChild(myheroform);
+    let myheroformcontainer = document.getElementById('my-hero-form-container');
+    myheroformcontainer.appendChild(myheroform);
   }
 }
