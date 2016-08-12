@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 
 import { Hero } from './hero.ts';
+import { phosphorAppend } from './phosphor-append';
 
 @Component({
   selector: 'my-hero-detail',
@@ -11,9 +12,6 @@ export class HeroDetailComponent implements OnInit {
   hero: Hero;
 
   ngOnInit() {
-    let myherodetail = document.getElementById('my-hero-detail');
-    myherodetail.parentNode.removeChild(myherodetail);
-    let myherodetailcontainer = document.getElementById('my-hero-detail-container');
-    myherodetailcontainer.appendChild(myherodetail);
+    phosphorAppend('my-hero-detail');
   }
 }

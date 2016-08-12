@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+
 import { FormHero }    from './form-hero';
+import { phosphorAppend } from './phosphor-append';
+
 @Component({
   selector: 'my-hero-form',
   styleUrls: ['hero-form.component.css'],
@@ -24,9 +27,6 @@ export class HeroFormComponent implements OnInit {
   }
 
   ngOnInit() {
-    let myheroform = document.getElementById('my-hero-form');
-    myheroform.parentNode.removeChild(myheroform);
-    let myheroformcontainer = document.getElementById('my-hero-form-container');
-    myheroformcontainer.appendChild(myheroform);
+    phosphorAppend('my-hero-form');
   }
 }

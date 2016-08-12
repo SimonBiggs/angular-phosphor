@@ -15,6 +15,7 @@ function createContent(title: string): Widget {
 }
 
 let r1 = createContent('Red');
+r1.id = 'my-hero-detail-container';
 let r2 = createContent('Red');
 let r3 = createContent('Red');
 
@@ -22,9 +23,10 @@ let b1 = createContent('Blue');
 b1.id = 'my-app-container';
 
 let b2 = createContent('Blue');
+b2.id = 'my-raw-coordinates-container';
 
-let g1 = createContent('Green');
-g1.id = 'my-hero-detail-container';
+let g1 = createContent('White');
+g1.id = 'my-plot-container';
 
 let g2 = createContent('Green');
 let g3 = createContent('Green');
@@ -48,7 +50,7 @@ panel.insertTabBefore(g3, y2);
 panel.insertTabBefore(r3, y1);
 
 panel.insertLeft(b1);
-panel.insertTabAfter(r1, b1);
+panel.insertBottom(r1, b1);
 panel.insertTabBefore(r2, b1);
 
 panel.attach(document.body);

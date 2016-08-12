@@ -6,6 +6,8 @@ import { HttpModule } from '@angular/http';
 import { AppComponent }  from './app.component';
 import { HeroDetailComponent } from './hero-detail.component';
 import { HeroFormComponent } from './hero-form.component';
+import { RawCoordinatesComponent } from './raw-coordinates.component';
+import { PlotComponent } from './plot.component';
 
 import { HeroService }  from './hero.service';
 import { ElectronApiService } from './electron-api.service';
@@ -19,7 +21,9 @@ import { ElectronApiService } from './electron-api.service';
   declarations: [
     AppComponent,
     HeroDetailComponent,
-    HeroFormComponent
+    HeroFormComponent,
+    RawCoordinatesComponent,
+    PlotComponent
   ],
   providers: [
     ElectronApiService,

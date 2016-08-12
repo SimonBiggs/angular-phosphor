@@ -1,0 +1,17 @@
+<h2>Raw Coordinates</h2>
+<form (ngSubmit)="onSubmit()" #rawCoordsForm="ngForm">
+  <div class="form-group">
+    <label for="x">X coordinates</label>
+    <textarea type="text" class="form-control" id="x" required
+      [(ngModel)]="x" name="x"></textarea>
+  </div>
+
+  <div class="form-group">
+    <label for="y">Y coordinates</label>
+    <textarea type="text" class="form-control" id="y" required
+      [(ngModel)]="y" name="y"></textarea>
+  </div>
+
+  <button type="submit" class="btn btn-default"
+    [disabled]="!rawCoordsForm.form.valid">Submit</button>
+</form>

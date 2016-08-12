@@ -17,3 +17,6 @@ import 'phosphor-dockpanel';
 import 'phosphor-messaging';
 import 'phosphor-widget';
 // import 'codemirror';
+
+// import 'vega-lite';
+import 'chart.js';
