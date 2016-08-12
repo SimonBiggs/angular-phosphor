@@ -1,3 +1,11 @@
+src/phosphor-layout/index.js
+src/phosphor-layout/index.js.map
+src/public/phosphor-layout.js
+
+src/angular-phosphor-append/index.js
+src/angular-phosphor-append/index.js.map
+src/public/angular-phosphor-append.js
+
 # Logs
 logs
 *.log

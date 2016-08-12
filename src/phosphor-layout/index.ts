@@ -19,13 +19,19 @@ let r2 = createContent('Red');
 let r3 = createContent('Red');
 
 let b1 = createContent('Blue');
+b1.id = 'my-app-container';
+
 let b2 = createContent('Blue');
 
 let g1 = createContent('Green');
+g1.id = 'my-hero-detail-container';
+
 let g2 = createContent('Green');
 let g3 = createContent('Green');
 
 let y1 = createContent('Yellow');
+y1.id = 'my-hero-form-container';
+
 let y2 = createContent('Yellow');
 
 let panel = new DockPanel();
@@ -48,15 +54,3 @@ panel.insertTabBefore(r2, b1);
 panel.attach(document.body);
 
 window.onresize = () => { panel.update(); };
-
-let myapp = document.getElementById('my-app');
-myapp.parentNode.removeChild(myapp);
-b1.node.appendChild(myapp);
-
-let myherodetail = document.getElementById('my-hero-detail');
-myherodetail.parentNode.removeChild(myherodetail);
-g1.node.appendChild(myherodetail);
-
-let myheroform = document.getElementById('my-hero-form');
-myheroform.parentNode.removeChild(myheroform);
-y1.node.appendChild(myheroform);
