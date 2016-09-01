@@ -1,1 +1,11 @@
-<div id="myDiv"></div>
+<div>
+  <canvas #myCanvas width="400" height="400" style="background:lightgray;"></canvas>
+  <div>
+    Width <input type="range" min="1" max="400" [(ngModel)]="rectW" /><br />
+    Height <input type="range" min="1" max="400" [(ngModel)]="rectH" /><br />
+    Colour <input type="color" [(ngModel)]="rectColor" placeholder="color" value="{{rectColor}}" />
+  </div>
+</div>
+
+
+<!-- <div id="myDiv"></div> -->
