@@ -1,6 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 
 import { phosphorAppend } from './phosphor-append';
+import { Hero } from './hero.ts';
+import { Coords } from './coords.ts';
 
 @Component({
   selector: 'my-raw-coordinates',
@@ -8,9 +10,9 @@ import { phosphorAppend } from './phosphor-append';
 })
 export class RawCoordinatesComponent implements OnInit {
   @Input()
-  x: number[];
+  coords: Coords;
   @Input()
-  y: number[];
+  selectedHero: Hero;
 
   ngOnInit() {
     phosphorAppend('my-raw-coordinates');

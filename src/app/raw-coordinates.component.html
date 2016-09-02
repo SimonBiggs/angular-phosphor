@@ -2,17 +2,31 @@
 
 <form (ngSubmit)="onSubmit()" #rawCoordsForm="ngForm">
   <div class="form-group">
-    <label for="x">X coordinates</label>
-    <textarea type="text" class="form-control" id="x" required
-      [(ngModel)]="x" name="x"></textarea>
+    <label for="coords.x">X coordinates</label>
+    <textarea type="number[]" class="form-control" id="x" required
+      [(ngModel)]="coords.x" placeholder="x" name="x"></textarea>
   </div>
 
   <div class="form-group">
-    <label for="y">Y coordinates</label>
-    <textarea type="text" class="form-control" id="y" required
-      [(ngModel)]="y" name="y"></textarea>
+    <label for="coords.y">Y coordinates</label>
+    <textarea type="number[]" class="form-control" id="y" required
+      [(ngModel)]="coords.y" placeholder="y" name="y"></textarea>
   </div>
 
   <button type="submit" class="btn btn-default"
     [disabled]="!rawCoordsForm.form.valid">Submit</button>
 </form>
+
+
+<!-- <textarea type="text" class="form-control" id="x" required
+  [(ngModel)]="coords.x" name="x"></textarea> -->
+
+  <!-- <div *ngIf="selectedHero">
+    <h2>{{selectedHero.name}} details!</h2>
+    <div><label>id: </label>{{selectedHero.id}}</div>
+    <div>
+      <label>name: </label>
+      <input [(ngModel)]="selectedHero.name" placeholder="name"/>
+      <input [(ngModel)]="coords.x" placeholder="x"/>
+    </div>
+  </div> -->

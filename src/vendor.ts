@@ -19,4 +19,7 @@ import 'phosphor-widget';
 // import 'codemirror';
 
 // import 'vega-lite';
-import 'chart.js';
+// import 'chart.js';
+
+// import 'dicom';
+// import 'fs';
