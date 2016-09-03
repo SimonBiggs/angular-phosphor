@@ -9,10 +9,14 @@ declare var Bokeh: any;
   templateUrl: './plot.component.html'
 })
 export class PlotComponent implements OnInit, OnChanges {
+  // @Input()
+  // x: number[];
+  // @Input()
+  // y: number[];
   @Input()
-  x: number[];
-  @Input()
-  y: number[];
+  parameteriseInput: string;
+
+  parsedJSON: any;
 
   plt = Bokeh.Plotting;
   tools = 'pan,crosshair,wheel_zoom,box_zoom,reset,save';
@@ -45,7 +49,16 @@ export class PlotComponent implements OnInit, OnChanges {
 
   ngOnChanges() {
     // this.fig.set({x_range: Bokeh.Range1d(-6, 6)});
-    this.source.data = { x: this.x, y: this.y };
+    try {
+      this.parsedJSON = JSON.parse(this.parameteriseInput);
+      if ("x" in this.parsedJSON && "y" in this.parsedJSON) {
+        if (this.parsedJSON.x.length == this.parsedJSON.y.length) {
+          this.source.data = this.parsedJSON
+        }
+      }
+
+    }
+    finally {};
     // this.xrange = Bokeh.Range1d(-5, 5);
   }
 

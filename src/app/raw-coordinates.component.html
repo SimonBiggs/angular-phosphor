@@ -1,17 +1,44 @@
+<!-- <div>
+  <p>Without JSON pipe:</p>
+  <pre>{{object}}</pre>
+  <p>With JSON pipe:</p>
+  <pre>{{object | json}}</pre>
+</div> -->
+
+<!-- <div>
+  <pre>{{coords | json}}</pre>
+</div> -->
+
+<!-- <textarea [ngModel]="coords | json"
+  style="width:100%; height:100px"
+  (ngModelChange)="coords=stringToCoords($event)"
+  placeholder="coords2" name="coords2">
+</textarea> -->
+
+<!-- <textarea [ngModel]="coords | json"
+  style="width:100%; height:100px"
+  (ngModelChange)="coords=stringToCoords($event)"
+  placeholder="coords2" name="coords2"> -->
+
+
+<!-- <textarea type="text" class="form-control" id="coords" required
+  [(ngModel)]="coords | json" placeholder="coords" name="coords"></textarea> -->
+
 <h2>Raw Coordinates</h2>
 
 <form (ngSubmit)="onSubmit()" #rawCoordsForm="ngForm">
   <div class="form-group">
-    <label for="coords.x">X coordinates</label>
-    <textarea type="number[]" class="form-control" id="x" required
-      [(ngModel)]="coords.x" placeholder="x" name="x"></textarea>
+    <textarea type="text" class="form-control"
+      id="parameteriseInput_editor" required
+      [(ngModel)]="parameteriseInput" placeholder="parameteriseInput"
+      name="parameteriseInput" style="height:280px"></textarea>
   </div>
 
-  <div class="form-group">
+  <!-- <div class="form-group">
     <label for="coords.y">Y coordinates</label>
     <textarea type="number[]" class="form-control" id="y" required
       [(ngModel)]="coords.y" placeholder="y" name="y"></textarea>
-  </div>
+  </div> -->
 
   <button type="submit" class="btn btn-default"
     [disabled]="!rawCoordsForm.form.valid">Submit</button>

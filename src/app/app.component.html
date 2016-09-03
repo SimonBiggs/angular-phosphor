@@ -1,5 +1,5 @@
 <textarea type="text" class="form-control" id="xff" required
-  [(ngModel)]="coords.x" name="xff"></textarea>
+  [(ngModel)]="parameteriseInput" name="xff" style="height:280px"></textarea>
 
 <h1>{{title}}</h1>
 
@@ -12,9 +12,14 @@
   </li>
 </ul>
 
-
-
 <my-hero-detail [hero]="selectedHero" id="my-hero-detail"></my-hero-detail>
 <my-hero-form id="my-hero-form"></my-hero-form>
-<my-raw-coordinates [coords]="coords" [selectedHero]="selectedHero" id="my-raw-coordinates"></my-raw-coordinates>
-<my-plot [x]="coords.x" [y]="coords.y" id="my-plot"></my-plot>
+<my-raw-coordinates
+  [parameteriseInput]="parameteriseInput"
+  id="my-raw-coordinates">
+</my-raw-coordinates>
+
+<my-plot
+  [parameteriseInput]="parameteriseInput"
+  id="my-plot">
+</my-plot>
