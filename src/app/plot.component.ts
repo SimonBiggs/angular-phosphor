@@ -1,7 +1,6 @@
 import { Component, OnInit, Input, OnChanges } from '@angular/core';
 
 import { phosphorAppend } from './phosphor-append';
-// declare var Plotly: any;
 declare var Bokeh: any;
 
 @Component({
@@ -9,10 +8,6 @@ declare var Bokeh: any;
   templateUrl: './plot.component.html'
 })
 export class PlotComponent implements OnInit, OnChanges {
-  // @Input()
-  // x: number[];
-  // @Input()
-  // y: number[];
   @Input()
   parameteriseInput: string;
 
@@ -29,56 +24,38 @@ export class PlotComponent implements OnInit, OnChanges {
   });
   source = new Bokeh.ColumnDataSource();
   doc = new Bokeh.Document();
-  // xaxis = new Bokeh.LinearAxis();
-  // yaxis = new Bokeh.LinearAxis();
-  // xgrid = new Bokeh.Grid({ ticker: this.xaxis.ticker, dimension: 0 });
-  // ygrid = new Bokeh.Grid({ ticker: this.yaxis.ticker, dimension: 1 });
-  // line = new Bokeh.Line({
-  //   x: { field: 'x' },
-  //   y: { field: 'y' },
-  //   line_width: 3
-  // });
-  // plot = new Bokeh.Plot({
-  //   title: 'BokehJS Plot',
-  //   x_range: this.xrange,
-  //   y_range: this.yrange,
-  //   plot_width: 300,
-  //   plot_height: 300
-  // });
 
 
   ngOnChanges() {
-    // this.fig.set({x_range: Bokeh.Range1d(-6, 6)});
-    try {
-      this.parsedJSON = JSON.parse(this.parameteriseInput);
-      if ("x" in this.parsedJSON && "y" in this.parsedJSON) {
-        if (this.parsedJSON.x.length == this.parsedJSON.y.length) {
-          this.source.data = this.parsedJSON
+    let re = new RegExp('^\{\s*\".*\}$|^\[\n?\{\s*\".*\}\n?\]$');
+    // if (this.parameteriseInput.match(re))
+    this.parsedJSON = {
+      'x': [0],
+      'y': [0]
+    };
+
+    if (this.parameteriseInput.match(re)) {
+      let json_test = JSON.parse(this.parameteriseInput);
+      if ('x' in json_test && 'y' in json_test) {
+        this.parsedJSON = json_test;
+        if (this.parsedJSON.x.length === this.parsedJSON.y.length) {
+          this.source.data = this.parsedJSON;
         }
       }
-
     }
-    finally {};
-    // this.xrange = Bokeh.Range1d(-5, 5);
   }
 
 
   ngOnInit() {
     phosphorAppend('my-plot');
 
-    // this.plot.add_layout(this.xaxis, 'below');
-    // this.plot.add_layout(this.yaxis, 'left');
-    // this.plot.add_layout(this.xgrid);
-    // this.plot.add_layout(this.ygrid);
-    // this.plot.add_glyph(this.line, this.source);
+    // this.fig.line({ field: 'x' }, { field: 'y' }, {
+    //     source: this.source,
+    //     line_width: 3
+    // });
 
-    this.fig.line({ field: 'x' }, { field: 'y' }, {
-        source: this.source,
-        line_width: 3
-    });
-
-    this.doc.add_root(this.fig);
-    let div = document.getElementById('plot');
-    Bokeh.embed.add_document_standalone(this.doc, div);
+    // this.doc.add_root(this.fig);
+    // let div = document.getElementById('plot');
+    // Bokeh.embed.add_document_standalone(this.doc, div);
   }
 }
