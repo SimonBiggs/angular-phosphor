@@ -27,35 +27,59 @@ export class PlotComponent implements OnInit, OnChanges {
 
 
   ngOnChanges() {
-    let re = new RegExp('^\{\s*\".*\}$|^\[\n?\{\s*\".*\}\n?\]$');
-    // if (this.parameteriseInput.match(re))
-    this.parsedJSON = {
-      'x': [0],
-      'y': [0]
-    };
-
-    if (this.parameteriseInput.match(re)) {
+    if (this.parameteriseInput.match(/[^0-9]\./)) {
+      console.log('Ignore leading .')
+    }
+    else if (this.parameteriseInput.match(/[^0-9\]]\,/)) {
+      console.log('Ignore leading ,')
+    }
+    else if (this.parameteriseInput.match(/[0-9\-]\s+[0-9\-]/)) {
+      console.log('Missing a , between number entries')
+    }
+    else if (this.parameteriseInput.match(/\]\s+"/)) {
+      console.log('Missing a , list entries')
+    }
+    else {
       let json_test = JSON.parse(this.parameteriseInput);
       if ('x' in json_test && 'y' in json_test) {
         this.parsedJSON = json_test;
         if (this.parsedJSON.x.length === this.parsedJSON.y.length) {
           this.source.data = this.parsedJSON;
         }
+        else {
+          console.log('x length doesn\'t match y length')
+        }
+      }
+      else {
+        console.log('x and/or y is missing')
       }
     }
+    // let re = new RegExp('^\{\s*\".*\}$|^\[\n?\{\s*\".*\}\n?\]$');
+
+    // if (this.parameteriseInput.match(re)) {
+    //   let json_test = JSON.parse(this.parameteriseInput);
+    //   if ('x' in json_test && 'y' in json_test) {
+    //     this.parsedJSON = json_test;
+    //     if (this.parsedJSON.x.length === this.parsedJSON.y.length) {
+    //       this.source.data = this.parsedJSON;
+    //     }
+    //   }
+    // }
   }
 
 
   ngOnInit() {
     phosphorAppend('my-plot');
 
-    // this.fig.line({ field: 'x' }, { field: 'y' }, {
-    //     source: this.source,
-    //     line_width: 3
-    // });
+    this.source.data = JSON.parse(this.parameteriseInput);
 
-    // this.doc.add_root(this.fig);
-    // let div = document.getElementById('plot');
-    // Bokeh.embed.add_document_standalone(this.doc, div);
+    this.fig.line({ field: 'x' }, { field: 'y' }, {
+        source: this.source,
+        line_width: 3
+    });
+
+    this.doc.add_root(this.fig);
+    let div = document.getElementById('plot');
+    Bokeh.embed.add_document_standalone(this.doc, div);
   }
 }
