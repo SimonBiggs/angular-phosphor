@@ -5,20 +5,23 @@ declare var Bokeh: any;
 
 @Component({
   selector: 'my-plot',
-  templateUrl: './plot.component.html'
+  templateUrl: './plot.component.html',
+  styleUrls: ['./plot.component.css']
 })
 export class PlotComponent implements OnInit, OnChanges {
   @Input()
   parameteriseInput: string;
 
   parsedJSON: any;
+  jsonValid: boolean = true;
+  jsonErrorMessage: string;
 
   plt = Bokeh.Plotting;
   tools = 'pan,crosshair,wheel_zoom,box_zoom,reset,save';
   xrange = Bokeh.Range1d(-6, 6);
   yrange = Bokeh.Range1d(-6, 6);
   fig = this.plt.figure({
-    title: 'Colorful Scatter', tools: this.tools,
+    title: 'Electron Insert Plot', tools: this.tools,
     plot_width: 300, plot_height: 300,
     x_range: this.xrange, y_range: this.yrange
   });
@@ -27,44 +30,30 @@ export class PlotComponent implements OnInit, OnChanges {
 
 
   ngOnChanges() {
-    if (this.parameteriseInput.match(/[^0-9]\./)) {
-      console.log('Ignore leading .')
-    }
-    else if (this.parameteriseInput.match(/[^0-9\]]\,/)) {
-      console.log('Ignore leading ,')
-    }
-    else if (this.parameteriseInput.match(/[0-9\-]\s+[0-9\-]/)) {
-      console.log('Missing a , between number entries')
-    }
-    else if (this.parameteriseInput.match(/\]\s+"/)) {
-      console.log('Missing a , list entries')
-    }
-    else {
+    this.jsonValid = false;
+    try {
       let json_test = JSON.parse(this.parameteriseInput);
       if ('x' in json_test && 'y' in json_test) {
         this.parsedJSON = json_test;
         if (this.parsedJSON.x.length === this.parsedJSON.y.length) {
           this.source.data = this.parsedJSON;
+          this.jsonValid = true;
         }
         else {
-          console.log('x length doesn\'t match y length')
+          this.jsonErrorMessage = 'The length of x doesn\'t match the length of y.';
         }
       }
       else {
-        console.log('x and/or y is missing')
+        this.jsonErrorMessage = 'Either x or y is missing.';
       }
     }
-    // let re = new RegExp('^\{\s*\".*\}$|^\[\n?\{\s*\".*\}\n?\]$');
+    catch(err) {
+      this.jsonErrorMessage = 'Error in JSON input. ' + err ;
+    }
+    finally {
 
-    // if (this.parameteriseInput.match(re)) {
-    //   let json_test = JSON.parse(this.parameteriseInput);
-    //   if ('x' in json_test && 'y' in json_test) {
-    //     this.parsedJSON = json_test;
-    //     if (this.parsedJSON.x.length === this.parsedJSON.y.length) {
-    //       this.source.data = this.parsedJSON;
-    //     }
-    //   }
-    // }
+    }
+
   }
 
 

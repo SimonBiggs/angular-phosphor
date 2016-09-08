@@ -1,5 +1,25 @@
-<textarea type="text" class="form-control" id="xff" required
-  [(ngModel)]="parameteriseInput" name="xff" style="height:280px"></textarea>
+<h1>Send Coordinates to Server</h1>
+  <form (ngSubmit)="onSubmit()" #coordsForm="ngForm">
+    <div class="form-group">
+      <label for="parameteriseInput">Parameterise Input</label>
+      <textarea type="text" class="form-control" id="parameteriseInputTextArea" required
+        [(ngModel)]="parameteriseInput" name="parameteriseInput" style="height:280px">
+      </textarea>
+      <div [hidden]="jsonValid" class="alert alert-danger">
+        {{jsonErrorMessage}}
+      </div>
+    </div>
+    <button type="submit" class="btn btn-default"
+      [disabled]="!coordsForm.form.valid">Submit</button>
+  </form>
+
+<div *ngIf="parameterisationResult">
+  <p>Width: {{parameterisationResult.width}}</p>
+  <p>Length: {{parameterisationResult.length}}</p>
+</div>
+
+
+
 
 <!--<h1>{{title}}</h1>
 

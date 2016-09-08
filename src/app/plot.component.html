@@ -1,5 +1,10 @@
-<div id="plot"></div>
-
-<!--<textarea id="ooo"
-  [(ngModel)]="parameteriseInput" placeholder="boo"
-  name="test" style="height:280px"></textarea>-->
+<section>
+  <div class="bk-root" style="height:300px">
+    <div id="plot"></div>
+  </div>
+</section>
+<section>
+  <div [hidden]="jsonValid" class="alert alert-danger">
+      {{jsonErrorMessage}}
+  </div>
+<section>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Hero } from './hero.ts';
+import { Parameterisation } from './parameterisation.ts';
 
 import { HeroService } from './hero.service';
 import { ElectronApiService } from './electron-api.service';
@@ -27,6 +28,10 @@ export class AppComponent implements OnInit {
     -5.26, -5.51, -5.58, -5.23, -4.64, -3.77, -2.77, -1.68, -0.29, 1.23,
     2.68, 3.8, 4.6, 5.01, 5.08, 5.05]
 }`;
+  parsedJSON: any;
+  jsonValid: boolean = true;
+  jsonErrorMessage: string;
+  parameterisationResult: Parameterisation;
 
   constructor(
     private heroService: HeroService,
@@ -42,10 +47,41 @@ export class AppComponent implements OnInit {
     // this.electronApiService.send_stuff(this.selectedHero);
   }
 
+  onSubmit() {
+    this.electronApiService.parameteriseInsert(this.parameteriseInput)
+      .then(parameterisationResult => this.parameterisationResult = parameterisationResult);
+  }
+
+  checkJSON() {
+    this.jsonValid = false;
+    try {
+      let json_test = JSON.parse(this.parameteriseInput);
+      if ('x' in json_test && 'y' in json_test) {
+        this.parsedJSON = json_test;
+        if (this.parsedJSON.x.length === this.parsedJSON.y.length) {
+          this.jsonValid = true;
+        }
+        else {
+          this.jsonErrorMessage = 'The length of x doesn\'t match the length of y.';
+        }
+      }
+      else {
+        this.jsonErrorMessage = 'Either x or y is missing.';
+      }
+    }
+    catch(err) {
+      this.jsonErrorMessage = 'Error in JSON input. ' + err ;
+    }
+    finally {
+
+    }
+  }
+
   ngOnInit() {
     this.getHeroes();
 
     phosphorAppend('my-app');
+    this.electronApiService.wakeUpServer();
   }
 
 }
