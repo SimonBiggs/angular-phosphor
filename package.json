@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "license": "AGPL-3.0",
   "scripts": {
-    "clean": "rimraf node_modules doc dist && npm cache clean",
+    "clean": "rimraf node_modules doc dist typings && npm cache clean",
     "clean-install": "npm run clean && npm install",
     "build": "npm run build:extras && rimraf dist && webpack --config config/webpack.prod.js --progress --profile --bail",
     "build:phosphor-layout": "rimraf src/public/phosphor-layout.js && tsc --project src/phosphor-layout && webpack --config src/phosphor-layout/webpack.conf.js",
