@@ -1,7 +1,7 @@
 {
   "name": "electrons-app",
   "version": "0.0.0",
-  "license": "AGPLv3+",
+  "license": "AGPL-3.0",
   "scripts": {
     "clean": "rimraf node_modules doc dist && npm cache clean",
     "clean-install": "npm run clean && npm install",
